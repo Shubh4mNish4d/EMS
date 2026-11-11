@@ -13,7 +13,10 @@ const profileRouter = require("./routes/profile.routes");
 const { serve } = require("inngest/express");
 const { inngest, funs } = require("./inngest");
 
-app.use(cors())
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true
+}));
 app.use(express.json())
 app.use(cookieParser())
 
