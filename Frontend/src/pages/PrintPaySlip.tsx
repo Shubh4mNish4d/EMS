@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import api from "../api/axios";
 import toast from "react-hot-toast";
 import type { PayslipDataInterface } from "../Types/DataTypes";
+import { getErrorMessage } from "../utils/error";
 
 
 const PrintPaySlip = () => {
@@ -20,7 +21,7 @@ const PrintPaySlip = () => {
           setPayslip(data.Payslip)
         }
         catch(err){
-          toast.error(err.response.data.error || err.message || "fetch payslip failed")
+          toast.error(getErrorMessage(err, "fetch payslip failed"))
         }
         finally{
           setLoading(false)

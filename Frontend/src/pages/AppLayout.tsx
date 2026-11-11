@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import api from "../api/axios";
 import Loader from "../components/Loader";
 import type { ProfileDataInterface } from "../Types/DataTypes";
+import { getErrorMessage } from "../utils/error";
 
 
 const AppLayout = () => {
@@ -23,7 +24,7 @@ const AppLayout = () => {
         setprofile(data.profile);
       }
       catch(err){
-        toast.error(err.message || "Fetch profile data failed")
+        toast.error(getErrorMessage(err, "Fetch profile data failed"))
       }
       finally{
         setLoading(false)

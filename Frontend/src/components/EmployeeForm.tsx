@@ -4,6 +4,7 @@ import api from "../api/axios";
 import toast from "react-hot-toast";
 import type { EmpDataInterfase } from "../Types/DataTypes";
 import { DEPARTMENTS } from "../assets/assets";
+import { getErrorMessage } from "../utils/error";
 
 const EmployeeForm = ({setFormOpen, setEditEmployee, initialData, isEditMode, getEmployee}:  {setFormOpen:React.Dispatch<React.SetStateAction<boolean>> | null; setEditEmployee: React.Dispatch<React.SetStateAction<EmpDataInterfase | null>> | null;  isEditMode : boolean; initialData:EmpDataInterfase | null; getEmployee:()=>void}) => {
 
@@ -35,15 +36,15 @@ const EmployeeForm = ({setFormOpen, setEditEmployee, initialData, isEditMode, ge
            toast.success(data.message);
 
            if(isEditMode){
-            setEditEmployee(null)
+            setEditEmployee?.(null)
            }
            else{
-            setFormOpen(false)
+            setFormOpen?.(false)
            }
-             
+              
         }
         catch(err:unknown ){
-            toast.error(err?.response?.data?.error || err?.response || "Create employee failed!")
+            toast.error(getErrorMessage(err, "Create employee failed!"))
         }
         finally{
             setProcessing(false);
@@ -52,7 +53,7 @@ const EmployeeForm = ({setFormOpen, setEditEmployee, initialData, isEditMode, ge
    }
 
   return (
-    <div className="w-screen h-screen bg-black/50 inset-0 overflow-y-auto top-0 left-0 fixed z-100 flex justify-center backdrop-blur-sm p-4" onClick={()=> initialData ? setEditEmployee(null) :setFormOpen(false)}>
+    <div className="w-screen h-screen bg-black/50 inset-0 overflow-y-auto top-0 left-0 fixed z-100 flex justify-center backdrop-blur-sm p-4" onClick={()=> initialData ? setEditEmployee?.(null) : setFormOpen?.(false)}>
 
         <div className="w-full max-w-3xl rounded-2xl h-fit bg-white my-8 animate-fade-in " onClick={(e)=>e.stopPropagation()}>    
             <div className="flex justify-between items-center pb-0 p-6">

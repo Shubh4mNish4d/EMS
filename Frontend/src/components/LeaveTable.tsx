@@ -4,15 +4,16 @@ import { useState } from "react";
 import type { leaveDataInterface } from "../Types/DataTypes";
 import api from "../api/axios";
 import toast from "react-hot-toast";
+import { getErrorMessage } from "../utils/error";
 
 
 const LeaveTable = ({leaves, isAdmin, fetchLeaves}: { leaves: leaveDataInterface[]; isAdmin: boolean; fetchLeaves:()=>void }) => {
 
-  const [processing, setProcessing] = useState<boolean | null>(null);
+  const [processing, setProcessing] = useState<string | null>(null);
 
   async function handleStatusUpdate(id:string, status:string){
      try{
-        setProcessing(true)
+        setProcessing(id)
         await api.patch(`/leave/${id}`,{"status": status} ,{
             headers: {
                 'Content-Type': 'application/json'
@@ -22,10 +23,10 @@ const LeaveTable = ({leaves, isAdmin, fetchLeaves}: { leaves: leaveDataInterface
         toast.success("Update status successfully!")
      }
      catch(err){
-        toast.error(err.response.data.error || err.message || "Create payslip failed")
+        toast.error(getErrorMessage(err, "Create payslip failed"))
      }
      finally{
-        setProcessing(false)
+        setProcessing(null)
      }
   }
 
@@ -78,13 +79,13 @@ const LeaveTable = ({leaves, isAdmin, fetchLeaves}: { leaves: leaveDataInterface
                                {isAdmin && <td className='px-6 py-4 '>
                                     {leave.status === "PENDING"  && <div className="flex gap-2 justify-center items-center">
                                         <button className="p-1.5 rounded-md bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors cursor-pointer"
-                                        disabled={!!processing}
+                                        disabled={processing !== null}
                                         onClick={()=>handleStatusUpdate((leave.id || leave._id),"APPROVED")}>
                                           {processing === (leave.id || leave._id) ? <Loader2 className="w-4 h-4 animate-spin"> </Loader2> : <Check  className="w-4 h-4"></Check>}
                                         </button>
 
                                         <button className="p-1.5 rounded-md bg-rose-50 text-rose-600 hover:bg-rose-100 transition-colors cursor-pointer"
-                                        disabled={!!processing}
+                                        disabled={processing !== null}
                                          onClick={()=>handleStatusUpdate((leave.id || leave._id),"REJECTED")}>
                                           {processing === (leave.id || leave._id) ? <Loader2 className="w-4 h-4 animate-spin"> </Loader2> : <X  className="w-4 h-4"></X>}
                                         </button>

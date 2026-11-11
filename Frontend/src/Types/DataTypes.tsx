@@ -1,31 +1,31 @@
 export interface EmpDataInterfase {
     _id: string;
-        userId: {
-            _id: string;
-            email: string;
-            role: string;
-        },
-        department: string;
-        firstName: string;
-        lastName: string;
+    userId: {
+        _id: string;
         email: string;
-        phone: string;
-        position: string;
-        basicSalary: number;
-        allowances: number;
-        deductions: number;
-        employeeStatus: string;
-        joinDate: string;
-        image: null | string;
-        isDeleted: boolean;
-        bio: string;
-        createdAt: string;
-        updatedAt: string;
-        id: string;
-        user: {
-            email: string;
-            role: string;
-        },
+        role: string;
+    };
+    department: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    position: string;
+    basicSalary: number;
+    allowances: number;
+    deductions: number;
+    employeeStatus: string;
+    joinDate: string;
+    image: null | string;
+    isDeleted: boolean;
+    bio: string;
+    createdAt: string;
+    updatedAt: string;
+    id?: string;
+    user: {
+        email: string;
+        role: string;
+    };
 }
 
 export interface leaveDataInterface{
@@ -60,6 +60,7 @@ export interface AdminDashboardDataInterface {
 
 export interface AttendanceDataInterface{
     _id : string,
+    id?: string,
     employeeId: string,
     date: string,
     checkIn: string,
@@ -93,5 +94,7 @@ export interface ProfileDataInterface {
     lastName: string,
     email: string,
     image: null | string,
-    role:string
+    role:string,
+    position?: string,
+    bio?: string
 };

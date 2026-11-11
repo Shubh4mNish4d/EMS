@@ -3,6 +3,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { getErrorMessage } from '../utils/error';
 
 const LoginForm = ({title, subtitle}: {title :string ; subtitle : string}) => {
   
@@ -19,7 +20,7 @@ const LoginForm = ({title, subtitle}: {title :string ; subtitle : string}) => {
       await login(email, password)
       toast.success('Login Successfully!')
     }catch(err:unknown){
-      toast.error(err.response?.data.error || err.message || "Login failed")
+      toast.error(getErrorMessage(err, "Login failed"))
     }
     finally{
       setloading(false)

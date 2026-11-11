@@ -5,6 +5,7 @@ import AdminDashboard from '../components/AdminDashboard';
 import {type AdminDashboardDataInterface, type EmployeeDashboardDataInterface } from '../Types/DataTypes';
 import api from '../api/axios';
 import toast from 'react-hot-toast';
+import { getErrorMessage } from '../utils/error';
 
 const Dashboard = () => {
 
@@ -24,7 +25,7 @@ const Dashboard = () => {
           }   
         }
         catch(err){
-          toast.error( err.response.data.error|| err.message ||"Fetch dashboard data failed")
+          toast.error(getErrorMessage(err, "Fetch dashboard data failed"))
         }
         finally{
           setLoading(false)

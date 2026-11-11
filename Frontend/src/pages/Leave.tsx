@@ -8,6 +8,7 @@ import LeaveForm from "../components/LeaveForm";
 import api from "../api/axios";
 import toast from "react-hot-toast";
 import { useAuth } from "../contexts/AuthContext";
+import { getErrorMessage } from "../utils/error";
 
 const Leave = () => {
   const [Loading, setLoading] = useState<boolean>(true);
@@ -21,7 +22,7 @@ const Leave = () => {
         setLeaves(data.data);
       }
       catch(err){
-        toast.error(err.response.data.error || err.message || "Fetch leaves failed!")
+        toast.error(getErrorMessage(err, "Fetch leaves failed!"))
       }
       finally{
         setLoading(false)

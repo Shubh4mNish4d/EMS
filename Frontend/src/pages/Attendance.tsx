@@ -7,6 +7,7 @@ import AttendanceBtn from "../components/AttendanceBtn";
 import type { AttendanceDataInterface } from "../Types/DataTypes";
 import api from "../api/axios";
 import toast from "react-hot-toast";
+import { getErrorMessage } from "../utils/error";
 
 const Attendance = () => {
 
@@ -20,7 +21,7 @@ const Attendance = () => {
 
       }
       catch(err){
-        toast.error(err.response.data.error || err.message || "Fetch attendance failed!");
+        toast.error(getErrorMessage(err, "Fetch attendance failed!"));
       }
       finally{
         setloading(false)

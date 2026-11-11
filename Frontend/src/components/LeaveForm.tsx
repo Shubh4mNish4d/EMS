@@ -2,6 +2,7 @@ import { CalendarDays, FileTextIcon, Loader2Icon, X } from "lucide-react"
 import { useState } from "react";
 import toast from "react-hot-toast";
 import api from "../api/axios";
+import { getErrorMessage } from "../utils/error";
 
 
 const LeaveForm = ({setFormOpen, fetchLeaves} : { setFormOpen : React.Dispatch<React.SetStateAction<boolean>> ; fetchLeaves:()=>void}) => {
@@ -25,7 +26,7 @@ const LeaveForm = ({setFormOpen, fetchLeaves} : { setFormOpen : React.Dispatch<R
         toast.success("Leave application created!");
       }
       catch(err){
-        toast.error(err.response.data.error || err.message || "Create payslip failed")
+        toast.error(getErrorMessage(err, "Create payslip failed"))
       }
       finally{
         setProcessing(false)

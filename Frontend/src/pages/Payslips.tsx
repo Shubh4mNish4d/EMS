@@ -7,6 +7,7 @@ import PayslipForm from "../components/PayslipForm";
 import api from "../api/axios";
 import toast from "react-hot-toast";
 import { useAuth } from "../contexts/AuthContext";
+import { getErrorMessage } from "../utils/error";
 
 const Payslips = () => {
   const [Loading, setLoading] = useState<boolean>(true);
@@ -23,7 +24,7 @@ const Payslips = () => {
           setEmployees(employeeData.data.result)
         }
         catch(err){
-          toast.error(err.response.data.error || err.message || "Fetch payslips failed!")
+          toast.error(getErrorMessage(err, "Fetch payslips failed!"))
         }
         finally{
           setLoading(false)

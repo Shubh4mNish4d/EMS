@@ -2,6 +2,7 @@ import { Loader2Icon, LogIn, LogOut } from 'lucide-react'
 import { useState } from 'react'
 import api from '../api/axios';
 import toast from 'react-hot-toast';
+import { getErrorMessage } from '../utils/error';
 
 const AttendanceBtn = ({todayRecord,fetchAttendanceData}:any) => {
     const [loading, setloading] = useState(false);
@@ -14,7 +15,7 @@ const AttendanceBtn = ({todayRecord,fetchAttendanceData}:any) => {
            fetchAttendanceData();
         }
         catch(err){
-            toast.error(err.response.data.error || err.message || "Fetch attendance failed!");
+            toast.error(getErrorMessage(err, "Fetch attendance failed!"));
         }
         finally{
             setloading(false)

@@ -3,6 +3,7 @@ import type { EmpDataInterfase } from "../Types/DataTypes";
 import { useState } from "react";
 import api from "../api/axios";
 import toast from "react-hot-toast";
+import { getErrorMessage } from "../utils/error";
 
 
 const PayslipForm = ({setPayslipFormOpen, Employees, fetchPayslip}:{setPayslipFormOpen:React.Dispatch<React.SetStateAction<boolean>> ; Employees:EmpDataInterfase[] | null; fetchPayslip : ()=>void}) => {
@@ -24,7 +25,7 @@ const PayslipForm = ({setPayslipFormOpen, Employees, fetchPayslip}:{setPayslipFo
         fetchPayslip();
        }
        catch(err){
-        toast.error(err.response.data.error || err.message || "Create payslip failed");
+        toast.error(getErrorMessage(err, "Create payslip failed"));
        }
        finally{
         setProcessing(false)

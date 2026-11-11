@@ -4,6 +4,7 @@ import { Loader2Icon, Lock, Save, User, X } from 'lucide-react';
 import type { ProfileDataInterface } from '../Types/DataTypes';
 import api from '../api/axios';
 import toast from 'react-hot-toast';
+import { getErrorMessage } from '../utils/error';
 
 const Settings = () => {
   const [Loading, setLoading] = useState<boolean>(true);
@@ -17,7 +18,7 @@ const Settings = () => {
       setProfile(data.profile);
     }
     catch(err:unknown){
-      toast.error(err.response.data.error || err.message || "Fetch employee failed!")
+      toast.error(getErrorMessage(err, "Fetch employee failed!"))
     }
     finally{
       setLoading(false)
@@ -41,7 +42,7 @@ const Settings = () => {
         if(data.success) toast.success("Bio updated successfully!")
       }
       catch(err){
-         toast.error(err.response.data.error || err.message || "Fetch employee failed!")
+         toast.error(getErrorMessage(err, "Fetch employee failed!"))
       }
       finally{
         setProcessing(false);
@@ -64,7 +65,7 @@ const Settings = () => {
       }
     }
     catch(err){
-      toast.error(err.response.data.error || err.message || "Fetch employee failed!");
+      toast.error(getErrorMessage(err, "Fetch employee failed!"));
     }
     finally{
       setProcessing(false)

@@ -12,10 +12,11 @@ import Settings from "./pages/Settings"
 import Employees from "./pages/Employees"
 import PrintPaySlip from "./pages/PrintPaySlip"
 import { useAuth } from "./contexts/AuthContext"
+import type { ProfileDataInterface } from "./Types/DataTypes"
 
 
 function App() { 
-  const {user, loading} = useAuth()
+  const {user}:{user:ProfileDataInterface | null} = useAuth()
 
 
 

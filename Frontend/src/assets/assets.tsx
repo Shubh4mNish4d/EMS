@@ -22,7 +22,7 @@ export function getWorkingHoursDisplay(record:AttendanceDataInterface) {
 
 export function getDayTypeDisplay(record:AttendanceDataInterface) {
     if (record.dayType) {
-        const map = {
+        const map: Record<string, string> = {
             "Full Day": "badge-success",
             "Three Quarter Day": "bg-blue-100 text-blue-700",
             "Half Day": "badge-warning",
