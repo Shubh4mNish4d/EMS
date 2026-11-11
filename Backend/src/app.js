@@ -13,10 +13,7 @@ const profileRouter = require("./routes/profile.routes");
 const { serve } = require("inngest/express");
 const { inngest, funs } = require("./inngest");
 
-app.use(cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true
-}));
+app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 
@@ -28,7 +25,7 @@ app.use("/api/payslip", payslipRouter);
 app.use("/api/dashboard", dashboardRouter);
 app.use("/api/profile", profileRouter);
 
-app.use("/api/inngest", serve({ client: inngest, funs }));
+// app.use("/api/inngest", serve({ client: inngest, funs }));
 
 
 app.get("/",(req, res)=>{
