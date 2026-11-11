@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const UserModel = require('../models/user.model');
+const UserModel = require('../models/User.model');
 const EmployeeModel = require("../models/Employe.model");
 
 async function createEmployee(req, res){
@@ -154,4 +154,3 @@ async function deleteEmployee(req, res){
 
 
 module.exports ={createEmployee, getEmployees, deleteEmployee, updateEmployee}
-
