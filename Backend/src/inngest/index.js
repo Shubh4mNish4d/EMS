@@ -9,7 +9,7 @@ const { Inngest } = require("inngest");
 
 // Auto clock out function:
 const autoClockOut = inngest.createFunction(
-  { id: "auto-clock-out", triggers: [{ event: "employee/clock-out" }] },
+  { id: "auto-clock-out", triggers:{ event: "employee/clock-out" }},
 
   async ({ event, step }) => {
 

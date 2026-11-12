@@ -36,7 +36,7 @@ app.use("/api/payslip", payslipRouter);
 app.use("/api/dashboard", dashboardRouter);
 app.use("/api/profile", profileRouter);
 
-app.use("/api/inngest", serve({ client: inngest, funs }));
+app.use("/api/inngest", serve({ client: inngest, functions:funs }));
 
 
 app.get("/",(req, res)=>{
