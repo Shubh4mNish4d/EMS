@@ -40,7 +40,7 @@ async function updateProfile(req, res) {
 
         const bio = req.body.bio;
 
-        if(!bio) return res.status(400).json({error : "Bio missing."})
+        if(session.role === "ADMIN") return res.status(400).json({error : "Admin cannot set bio on there profile it is exclusive for eployees!"})
 
         const employee = await EmployeeModel.findOne({userId :session.userId});
 

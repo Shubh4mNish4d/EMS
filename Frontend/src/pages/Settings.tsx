@@ -109,7 +109,7 @@ const Settings = () => {
 
                     <div className='pt-1'>
                       <label className='mb-2 block' htmlFor="bio">Bio</label>
-                      <textarea name="bio" id="bio" placeholder='Write a brief bio...' defaultValue={Profile?.bio || ""} className='resize-none placeholder:font-normal' />
+                      <textarea name="bio" required id="bio" placeholder='Write a brief bio...' defaultValue={Profile?.bio || ""} className='resize-none placeholder:font-normal' />
                       <p className='text-xs text-slate-400 font-normal mt-2' >This will be displayed on your profile.</p>
                     </div>
 
