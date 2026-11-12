@@ -1,5 +1,5 @@
 import { ChevronRight, Settings, User, DollarSign, XIcon, Menu, LayoutGridIcon, UserIcon, CalendarIcon, FileTextIcon, SquareArrowRightExit } from "lucide-react";
-import { useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 import { Link, Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import toast from "react-hot-toast";
@@ -30,9 +30,12 @@ const AppLayout = () => {
         setLoading(false)
       }
    }
-
    getProfile()
   },[]);
+
+  useEffect(()=>{
+    setMobileOpen(false)
+  },[pathname])
 
   const NavItems = [
     {name: "Dashboard", link:"/dashboard" , icon : LayoutGridIcon},
