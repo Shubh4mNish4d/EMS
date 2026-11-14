@@ -13,15 +13,16 @@ import Employees from "./pages/Employees"
 import PrintPaySlip from "./pages/PrintPaySlip"
 import { useAuth } from "./contexts/AuthContext"
 import type { ProfileDataInterface } from "./Types/DataTypes"
+import Loader from "./components/Loader"
 
 function App() { 
-  const {user}:{user:ProfileDataInterface | null} = useAuth()
-
+  const {user, loading}:{user:ProfileDataInterface | null; loading:boolean} = useAuth();
+  
   return (
     <>  
       <Toaster />
+      {loading &&  <div className="w-full h-screen"><Loader></Loader></div> }
       <Routes>
-        <Route path="/" element={user ? <Navigate to="/dashboard" replace></Navigate> : <Navigate to="/login" replace></Navigate>}></Route>
           <Route path="/login" element={user ? <Navigate to="/dashboard" replace></Navigate> :<LoginLayout></LoginLayout>}>
               <Route index element={<LoginHome></LoginHome>}></Route>
               <Route path="/login/admin" element={<LoginForm title="Admin Portal" subtitle={"Sign in to manage the organization"} ></LoginForm>}></Route>
@@ -38,7 +39,7 @@ function App() {
           </Route>
 
           <Route path="/print/payslips/:id" element={<PrintPaySlip></PrintPaySlip>}></Route> 
-          <Route path="*" element={user ? <Navigate to="/dashboard" replace></Navigate> :<LoginLayout></LoginLayout>}></Route>
+          <Route path="*" element={user ? <Navigate to="/dashboard" replace></Navigate> : <Navigate to="/login" replace></Navigate>}></Route>
       </Routes>
     </>
   )
