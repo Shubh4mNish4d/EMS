@@ -1,5 +1,4 @@
 export function getErrorMessage(error: unknown, fallback = "Something went wrong") {
-  console.log(error instanceof Error)
   if (typeof error === "string") return error;
 
   const maybeError = error as {
@@ -8,6 +7,7 @@ export function getErrorMessage(error: unknown, fallback = "Something went wrong
   };
   
   if (maybeError?.response?.data?.error) return maybeError.response.data.error;
+  if (maybeError?.response?.data) return maybeError.response.data;
   if (maybeError?.message) return maybeError.message;
 
   return fallback;

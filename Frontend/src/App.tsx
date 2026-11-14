@@ -14,11 +14,8 @@ import PrintPaySlip from "./pages/PrintPaySlip"
 import { useAuth } from "./contexts/AuthContext"
 import type { ProfileDataInterface } from "./Types/DataTypes"
 
-
 function App() { 
   const {user}:{user:ProfileDataInterface | null} = useAuth()
-
-
 
   return (
     <>  
@@ -40,7 +37,7 @@ function App() {
           </Route>
 
           <Route path="/print/payslips/:id" element={<PrintPaySlip></PrintPaySlip>}></Route> 
-          <Route path="*" element={<Navigate to="/dashboard" replace></Navigate>}></Route>
+          <Route path="*" element={user ? <Navigate to="/dashboard" replace></Navigate> :<LoginLayout></LoginLayout>}></Route>
       </Routes>
     </>
   )
