@@ -17,13 +17,13 @@ import Loader from "./components/Loader"
 
 function App() { 
   const {user, loading}:{user:ProfileDataInterface | null; loading:boolean} = useAuth();
-  
+
+  if(loading) <div className="w-full h-screen"><Loader></Loader></div>
+
   return (
     <>  
-      <Toaster />
-      {loading &&  <div className="w-full h-screen"><Loader></Loader></div> }
       <Routes>
-          <Route path="/login" element={user ? <Navigate to="/dashboard" replace></Navigate> :<LoginLayout></LoginLayout>}>
+          <Route path="/login" element={user ? <Navigate to="/dashboard" replace></Navigate> : <LoginLayout></LoginLayout>}>
               <Route index element={<LoginHome></LoginHome>}></Route>
               <Route path="/login/admin" element={<LoginForm title="Admin Portal" subtitle={"Sign in to manage the organization"} ></LoginForm>}></Route>
               <Route path="/login/employee" element={<LoginForm title="Employee Portal" subtitle={"Sign in to access your account"}></LoginForm>}></Route>
@@ -39,7 +39,7 @@ function App() {
           </Route>
 
           <Route path="/print/payslips/:id" element={<PrintPaySlip></PrintPaySlip>}></Route> 
-          <Route path="*" element={user ? <Navigate to="/dashboard" replace></Navigate> : <Navigate to="/login" replace></Navigate>}></Route>
+          <Route path="*" element={<Navigate to="/dashboard" replace></Navigate>}></Route>
       </Routes>
     </>
   )

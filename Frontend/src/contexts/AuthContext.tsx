@@ -16,8 +16,8 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 export function AuthProvider({children}:{children : React.ReactNode}){
 
     const [user, setUser] = useState<ProfileDataInterface | null>(null); 
-    const [loading, setLoading] = useState<boolean>(false);
-    const [token, settoken] = useState<string | null>("");
+    const [loading, setLoading] = useState<boolean>(true);
+    const [token, settoken] = useState<string | null>(null);
 
     async function login(email:string, password:string){
         const {data} = await api.post("/auth/login",{
@@ -57,12 +57,11 @@ export function AuthProvider({children}:{children : React.ReactNode}){
         finally{
             setLoading(false);
         }
-
     }
 
     useEffect(()=>{
-        refresh()
-    },[])
+        refresh();
+    },[token])
 
     const value = {user, login, loading, token, logout, setLoading}
 
