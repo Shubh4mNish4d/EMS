@@ -17,7 +17,6 @@ const AppLayout = () => {
   const {user,logout,loading, setLoading} = useAuth()
 
   useEffect(()=>{
-   setLoading(true)
    async function getProfile() {
        try{
         const {data} = await api.get("/profile");
@@ -33,9 +32,6 @@ const AppLayout = () => {
    getProfile()
   },[]);
 
-  useEffect(()=>{
-    setMobileOpen(false)
-  },[pathname])
 
   const NavItems = [
     {name: "Dashboard", link:"/dashboard" , icon : LayoutGridIcon},
@@ -113,7 +109,7 @@ const AppLayout = () => {
               {NavItems.map((item)=>{
                 const isActive = pathname.startsWith(item.link)
 
-                return (<Link key={item.name} to={item.link} className={`group flex justify-between duration-100 px-3 py-2.5 rounded-sm items-center relative ${isActive ? "bg-[#615FFF1F] text-indigo-300" : "text-slate-300 hover:text-white hover:bg-white/4"}`} >
+                return (<Link key={item.name} to={item.link} onClick={()=>setMobileOpen(false)} className={`group flex justify-between duration-100 px-3 py-2.5 rounded-sm items-center relative ${isActive ? "bg-[#615FFF1F] text-indigo-300" : "text-slate-300 hover:text-white hover:bg-white/4"}`} >
                     {isActive && <div className=" absolute w-0.75 h-5 bg-indigo-600 rounded-r-xl left-0" />}
                       <div className="flex gap-3 text-[13px] font-medium items-center">
                         <item.icon className={`size-4.5 shrink-0 ${isActive ? "text-indigo-300" : "text-slate-400 group-hover:text-slate-300"}`}/>

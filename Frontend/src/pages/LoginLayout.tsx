@@ -1,7 +1,7 @@
-import {  Outlet } from 'react-router-dom'
-console.log("login")
+import {  Outlet } from 'react-router-dom';
 
 const LoginLayout = () => {
+
   return (
     <div className='w-full min-h-screen justify-center items-center flex flex-col md:flex-row '>
         <div className='md:w-1/2 hidden md:flex min-h-screen bg-indigo-950 flex-col justify-center pl-20 relative'>
