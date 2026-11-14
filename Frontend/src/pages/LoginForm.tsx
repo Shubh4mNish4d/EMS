@@ -40,7 +40,7 @@ const LoginForm = ({title, subtitle}: {title :string ; subtitle : string}) => {
       <form onSubmit={submitHandler}>
           <div className='md:mb-2 mb-4'>
             <label htmlFor="email" className='text-sm' >Email Address</label>
-            <input type="text" id="email" className='md:w-110 w-full block mt-1' placeholder='example@example.com' 
+            <input autoComplete="on"  type="text" id="email" className='md:w-110 w-full block mt-1' placeholder='demo@gmail.com'
             value={email}
             onChange={(e)=>setEmail(e.target.value)}/>
           </div>
@@ -48,7 +48,7 @@ const LoginForm = ({title, subtitle}: {title :string ; subtitle : string}) => {
           <div>
             <label htmlFor="password" className='text-sm'>Password</label>
             <div className='relative'>
-              <input type={hidePassword ? "password" : "text"} id="password" className='md:w-110 w-full block mt-1' placeholder='..........'
+              <input autoComplete='on' type={hidePassword ? "password" : "text"} id="password" className='md:w-110 w-full block mt-1' placeholder='demo123'
               value={password}
               onChange={(e)=>setPassword(e.target.value)}
               />
