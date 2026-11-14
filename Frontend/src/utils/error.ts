@@ -1,8 +1,8 @@
-export function getErrorMessage(error: any, fallback = "Something went wrong") {
+export function getErrorMessage(error: unknown, fallback = "Something went wrong") {
   if (typeof error === "string") return error;
 
   const maybeError = error as {
-    response?: { data?: { error?: string } };
+    response?: { data?: string | { error?: string } };
     message?: string;
   };
   
