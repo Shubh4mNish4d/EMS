@@ -56,7 +56,7 @@ const LoginForm = ({title, subtitle}: {title :string ; subtitle : string}) => {
             </div>
           </div>
           <div>
-            <button className='btn-primary md:w-110 w-full mt-8 flex justify-center md:mt-5 cursor-pointer'>{loading ?  <Loader2Icon className=' animate-spin size-5'></Loader2Icon>: "Submit"} </button> 
+            <button disabled={loading} className='btn-primary md:w-110 w-full mt-8 flex justify-center md:mt-5 cursor-pointer'>{loading ?  <Loader2Icon className=' animate-spin size-5'></Loader2Icon>: "Submit"} </button> 
           </div>
       </form>
     </div>

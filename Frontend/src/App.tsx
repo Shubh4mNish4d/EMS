@@ -21,6 +21,7 @@ function App() {
     <>  
       <Toaster />
       <Routes>
+        <Route path="/" element={user ? <Navigate to="/dashboard" replace></Navigate> : <Navigate to="/login" replace></Navigate>}></Route>
           <Route path="/login" element={user ? <Navigate to="/dashboard" replace></Navigate> :<LoginLayout></LoginLayout>}>
               <Route index element={<LoginHome></LoginHome>}></Route>
               <Route path="/login/admin" element={<LoginForm title="Admin Portal" subtitle={"Sign in to manage the organization"} ></LoginForm>}></Route>
