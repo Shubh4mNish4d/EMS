@@ -3,7 +3,7 @@ import {  Outlet } from 'react-router-dom';
 const LoginLayout = () => {
 
   return (
-    <div className='w-full min-h-screen justify-center items-center flex flex-col md:flex-row '>
+    <div className='w-full min-h-dvh justify-center items-center flex flex-col md:flex-row '>
         <div className='md:w-1/2 hidden md:flex min-h-screen bg-indigo-950 flex-col justify-center pl-20 relative'>
           <div className='absolute -top-30 -left-30 w-72 h-72 bg-indigo-500/20 rounded-full blur-3xl'>
 

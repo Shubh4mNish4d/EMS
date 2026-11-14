@@ -51,7 +51,7 @@ const AppLayout = () => {
   if(!user) return <Navigate to="/login"></Navigate>
 
   return (
-    <div className="w-full min-h-screen flex relative">
+    <div className="w-full min-h-dvh flex relative">
 
       {/* Mobile Hamburger Menu Btn */}
 
