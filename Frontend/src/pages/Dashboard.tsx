@@ -36,7 +36,7 @@ const Dashboard = () => {
 
   if(loading) return <div className='h-full w-full'><Loader></Loader></div>;
 
-  if(!employeeData && !adminData) return <div>Not data found</div>;
+  if(!employeeData && !adminData) return <div>No data found.</div>;
 
   if(adminData){
     return(<div>

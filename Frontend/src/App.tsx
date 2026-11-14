@@ -17,7 +17,7 @@ import Loader from "./components/Loader"
 function App() { 
   const {user, loading}:{user:ProfileDataInterface | null; loading:boolean} = useAuth();
 
-  if(loading) <div className="w-full h-screen"><Loader></Loader></div>
+  if(loading) <div className="w-full h-screen"><Loader></Loader></div>;
 
   return (
     <>  
@@ -38,7 +38,7 @@ function App() {
           </Route>
 
           <Route path="/print/payslips/:id" element={<PrintPaySlip></PrintPaySlip>}></Route> 
-          <Route path="*" element={<Navigate to="/dashboard" replace></Navigate>}></Route>
+          <Route path="*" element={user ? <Navigate to="/dashboard" replace></Navigate> :  <Navigate to="/login" replace></Navigate>}></Route>
       </Routes>
     </>
   )
